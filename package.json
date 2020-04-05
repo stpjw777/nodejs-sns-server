@@ -1,0 +1,19 @@
+{
+  "name": "nodejs-sns-server",
+  "version": "1.0.0",
+  "description": "NodeBird API 서버",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error:no test specified\" && exit 1"
+  },
+  "repository": "https://github.com/stpjw777/nodejs-sns-server.git",
+  "author": "jaewan <stpjw777@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^4.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
