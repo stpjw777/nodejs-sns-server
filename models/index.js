@@ -13,6 +13,13 @@ const sequelize = new Sequelize(
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.User = require("./user")(sequelize, Sequelize);
+db.Post = require("./post")(sequelize, Sequelize);
+db.Hashtag = require("./hashtag")(sequelize, Sequelize);
 db.Domain = require("./domain")(sequelize, Sequelize);
+db.User.hasmany(db.Post);
+db.Post.belongsTo(db.User);
+db.Post.belongsToMany(db.Hashtag, { through: "PostHashtag" });
+db.Hashtag.belongsToMany(db.Post, { through: "PostHashtag" });
 
 module.exports = db;
