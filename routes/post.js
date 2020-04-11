@@ -10,12 +10,12 @@ const router = express.Router();
 
 fs.readdir("uploads", (error) => {
   if (error) {
-    console.error("uploads ㅍㅗㄹ더가 없어 uploads 폴더를 생성합니다");
+    console.error("uploads 폴더가 없어 uploads 폴더를 생성합니다");
     fs.mkdirSync("uploads");
   }
 });
 
-const uploads = multer({
+const upload = multer({
   storage: multer.diskStorage({
     destination(req, file, cb) {
       cb(null, "uploads/");
@@ -74,7 +74,7 @@ router.get("/hashtag", async (req, res, next) => {
     const hashtag = await Hashtag.findOne({ where: { title: query } });
     let posts = [];
     if (hashtag) {
-      posts = await hashtag.getPost({ include: [{ model: User }] });
+      posts = await hashtag.getPosts({ include: [{ model: User }] });
     }
     return res.render("main", {
       title: `${query} | NodeBird`,
@@ -86,3 +86,5 @@ router.get("/hashtag", async (req, res, next) => {
     return next(error);
   }
 });
+
+module.exports = router;
